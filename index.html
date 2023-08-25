@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        *{
+            font-size: 40px;
+            font-family: Cambria;
+        }
+        body{
+            background-color: lightblue;
+        }
+        .rbtn{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;        
+        }
+    </style>
+    <script>
+        function pg(){
+            event.preventDefault();
+            let l6 = document.getElementById("l6");
+            let l7 = document.getElementById("l7");
+            let l8 = document.getElementById("l6");
+            let l9 = document.getElementById("l9");
+            let uc = document.getElementById("uc");
+            let di = document.getElementById("di");
+            let ans = document.getElementById("ans");
+
+            let len = 0;
+            if(l6.checked){
+                len = 6;
+            }
+            else if(l7.checked){
+                len = 7;
+            }
+            else if(l8.checked){
+                len = 8;
+            }
+            else{
+                len = 9;
+            }
+
+            let text = "abcdefghijklmnopqrstuvwxyz";
+
+            if(uc.checked){
+                text = text + text.toUpperCase();
+            }
+
+            if(di.checked){
+                text = text + "0123456789"
+            }
+             let pw = "";
+             for(let i=0; i<len; i++){
+                let r = parseInt(Math.random() * text.length);
+                pw = pw + text[r];
+             }
+             ans.innerHTML = pw;
+
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <form onsubmit="pg()">
+        <h1>Passwors Generator</h1>
+
+        <div class="rbtn">
+            <div>
+                <h2>length</h2>
+            </div>&nbsp;&nbsp;
+            <div>
+                <input type="radio" name="le" value="l6" id="l6">6
+                <input type="radio" name="le" value="l7" id="l7">7
+                <input type="radio" name="le" value="l8" id="l8" checked="true">8
+                <input type="radio" name="le" value="l9" id="l9">9
+            </div>
+            
+        </div>
+        <div>
+            <input type="checkbox" name="ch" id="uc"> Upper Case
+            <input type="checkbox" name="di" id="di"> Digits
+
+        </div><br>
+        <input type="submit" value="Generate"><br>
+        <h1 id="ans"></h1>
+    </form>
+    </center>
+</body>
+</html>
